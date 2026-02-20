@@ -1,0 +1,18 @@
+{
+  "name": "Obsidian Image Map - Build",
+  "build": { "dockerfile": "Dockerfile" },
+  "features": {},
+  "containerUser": "node",
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+    }
+  },
+  "mounts": [
+    // Mount 1: das Repo selbst (wird von VS Code automatisch als workspace gemountet)
+    // Mount 2: dein Windows-Vault-Plugin-Ziel (DIST-Kopie)
+    "source=C:\\Users\\thomas\\workspace\\vault_image-map-main,target=/workspaces/vault_image-map/.out,type=bind"
+  ],
+  "postCreateCommand": "npm ci",
+  "postStartCommand": "node -v && npm -v"
+}
