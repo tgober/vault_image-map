@@ -1,0 +1,83 @@
+/* Styles for the image-map wrapper and overlay elements.
+ * Obsidian uses these rules to position interactive vectors over images. */
+/* Container around the image. Override to change layout. */
+.image-map-container {
+  position: relative;
+  display: inline-block;
+}
+.image-map-container img {
+  display: block;
+}
+/* Overlay element containing interactive shapes. Customize for your theme. */
+.image-map-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+}
+
+/* Editor styles */
+/* Container for editor and image preview. */
+.image-map-editor-container {
+  position: relative;
+}
+/* Full-size SVG canvas used while editing. */
+
+.image-map-editor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Default appearance for drawn shapes. */
+.image-map-shape {
+  /* fill und stroke werden vom SVG-Element gesetzt */
+}
+
+/* Small circles used as drag handles. */
+.image-map-handle {
+  fill: #fff;
+  stroke: blue;
+  stroke-width: 0.5;
+  cursor: pointer;
+}
+/* Editable shape outline. Override `.image-map-shape.is-editing` in your theme. */
+.image-map-shape.is-editing {
+  stroke-dasharray: 3;
+}
+
+/* Hover effect for shapes to indicate interactivity. */
+.image-map-shape:hover {
+  fill: rgba(0, 0, 255, 0.3);
+}
+
+/* Selected drag handle during editing. */
+.image-map-handle.is-selected {
+  fill: blue;
+}
+
+/* Hover effect for drag handles. */
+.image-map-handle:hover {
+  fill: #e0e0ff;
+}
+
+/* Highlight the currently selected shape in the editor.
+ * Override `.image-map-shape.is-selected` in your vault theme. */
+.image-map-shape.is-selected {
+  stroke: red;
+}
+
+/* Hovered drag handle color. Customize `.image-map-handle.is-hovered` */
+.image-map-handle.is-hovered {
+  fill: #e0e0ff;
+}
+
+/* Indicates a shape can be edited. Override `.image-map-shape.is-editable` */
+.image-map-shape.is-editable {
+  cursor: move;
+  stroke-dasharray: 3;
+}
