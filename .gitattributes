@@ -1,0 +1,5 @@
+# Set up proper line endings for all files
+* text=auto
+
+# Ensure setup.sh always uses LF (Linux line endings)
+setup.sh text eol=lf
