@@ -45,14 +45,28 @@ export default class ImageMapPlugin extends Plugin {
           }
         }
 
-        const coords: ShapeCoords | null = parseCoordinates(
+        console.log('[ImageMapPlugin] Prüfe Bild:', img.src);
+        const regionsOrCoords = parseCoordinates(
           img,
           ctx.frontmatter,
         );
+        console.log('[ImageMapPlugin] parseCoordinates Ergebnis:', regionsOrCoords);
 
-        if (!externalSvg && !coords) continue;
+        if (!externalSvg && !regionsOrCoords) {
+          console.log('[ImageMapPlugin] Kein Overlay und keine Koordinaten gefunden, überspringe Bild:', img.src);
+          continue;
+        }
 
-        overlayImage(img, coords, externalSvg);
+        // Overlay erst erzeugen, wenn das Bild geladen ist
+        const renderOverlay = () => {
+          const wrapper = overlayImage(img, regionsOrCoords, externalSvg);
+          console.log('[ImageMapPlugin] overlayImage Wrapper:', wrapper);
+        };
+        if (img.complete && img.naturalWidth && img.naturalHeight) {
+          renderOverlay();
+        } else {
+          img.addEventListener('load', renderOverlay, { once: true });
+        }
       }
     });
 
